@@ -4,171 +4,316 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>David Kostić · Bartender & Barista</title>
-<meta name="description" content="David Kostić, bartender and barista since 2014. Hotel pool bars, cocktail bars and specialty coffee in Serbia, Croatia, Spain and Cyprus. Guest reviews, references and contact.">
+<meta name="description" content="David Kostić, bartender and barista since 2014. Hotel pool bars, cocktail bars and specialty coffee in Serbia, Croatia, Spain and Cyprus. Drinks, guest reviews, references and contact.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,900;1,9..144,600;1,9..144,900&family=Hanken+Grotesk:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #EEF2F5; --ink: #231A30; --soft: #5A5366; --line: #CDD3DA; --grenadine: #C3304C; --white: #FFFFFF;
-    --stamp-teal: #1D7373; --stamp-navy: #2D3E8C; --stamp-red: #B02E45; --stamp-olive: #5E6B2A;
+    --crema: #EFE2CC; --crema-deep: #E2CFAF; --espresso: #2A1810; --roast: #6B4430;
+    --night: #170B12; --night-2: #24121C; --campari: #C8102E; --peel: #F08A24; --ice: #F6F1EA;
+    --soft-day: #6E5848; --soft-night: #BBA6B0;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 18px/1.6 "Bricolage Grotesque", system-ui, sans-serif; }
+  body { margin: 0; background: var(--crema); color: var(--espresso); font: 400 18px/1.6 "Hanken Grotesk", system-ui, sans-serif; }
   img { display: block; max-width: 100%; }
   a { color: inherit; }
-  :focus-visible { outline: 3px solid var(--grenadine); outline-offset: 3px; }
-  h1, h2, h3 { margin: 0; line-height: 1; font-weight: 800; letter-spacing: -0.02em; }
-  .wrap { width: min(1160px, 100% - 40px); margin-inline: auto; }
+  :focus-visible { outline: 3px solid var(--peel); outline-offset: 3px; }
+  h1, h2, h3 { margin: 0; font-family: "Fraunces", Georgia, serif; font-weight: 900; line-height: .95; letter-spacing: -0.02em; }
+  .wrap { width: min(1180px, 100% - 40px); margin-inline: auto; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 26px; border-radius: 999px; font-weight: 700; text-decoration: none; border: 2px solid currentColor; }
+  .btn.fill { background: var(--campari); border-color: var(--campari); color: #fff; }
+  .btn.fill:hover { background: #A50D26; border-color: #A50D26; }
 
-  nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; gap: 20px; }
-  nav .name { font-weight: 800; font-size: 20px; text-decoration: none; }
-  nav .links { display: flex; gap: 26px; font-weight: 600; }
-  nav .links a { text-decoration: none; }
-  nav .links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  /* ---------- Hero: day shift | night shift ---------- */
+  .hero { position: relative; display: grid; grid-template-columns: 1fr 1fr; min-height: min(100vh, 920px); overflow: hidden; }
+  .half { position: relative; padding: 28px clamp(20px, 4vw, 56px) 56px; display: flex; flex-direction: column; }
+  .day { background: var(--crema); color: var(--espresso); }
+  .night { background: var(--night); color: var(--ice); }
+  .half .clock { font-family: "Courier Prime", monospace; font-weight: 700; font-size: 15px; }
+  .day .clock { color: var(--roast); }
+  .night .clock { color: var(--peel); text-align: right; }
+  .topnav { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+  .topnav .name { font-family: "Fraunces", serif; font-weight: 900; font-size: 21px; text-decoration: none; }
+  .night .topnav { justify-content: flex-end; }
+  .night .topnav a { text-decoration: none; font-weight: 600; margin-left: 24px; opacity: .85; }
+  .night .topnav a:hover { opacity: 1; }
+  .hero h1 { position: absolute; z-index: 3; left: 0; right: 0; top: clamp(90px, 13vh, 140px); text-align: center; font-size: clamp(64px, 12.5vw, 190px); line-height: .82; font-style: italic;
+    background: linear-gradient(90deg, var(--espresso) 50%, var(--ice) 50%); -webkit-background-clip: text; background-clip: text; color: transparent; pointer-events: none; }
+  .hero h1 span { display: block; }
+  .portrait { position: absolute; z-index: 2; left: 50%; bottom: 0; transform: translateX(-50%); width: min(24vw, 340px); margin: 0; }
+  .portrait img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 999px 999px 0 0; }
+  .portrait figcaption { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%) rotate(-3deg); background: var(--peel); color: var(--night); font-weight: 700; padding: 8px 16px; border-radius: 6px; white-space: nowrap; font-size: 15px; }
+  .side-copy { margin-top: auto; max-width: 300px; }
+  .side-copy h2 { font-size: clamp(28px, 2.6vw, 38px); margin-bottom: 12px; }
+  .side-copy p { margin: 0 0 22px; font-size: 17px; }
+  .day .side-copy p { color: var(--soft-day); }
+  .night .side-copy { margin-left: auto; text-align: right; }
+  .night .side-copy p { color: var(--soft-night); }
+  .night .side-copy .btn { margin-left: auto; }
+  .hero .peek { position: absolute; width: clamp(110px, 12vw, 170px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; z-index: 1; }
+  .day .peek { right: 22%; top: 55%; }
+  .night .peek { left: 22%; top: 55%; }
 
-  /* Hero */
-  .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 56px; align-items: end; padding: 40px 0 88px; }
-  .hero h1 { font-size: clamp(64px, 10vw, 148px); line-height: .88; }
-  .hero .role { font-size: clamp(24px, 2.6vw, 34px); font-weight: 600; margin: 22px 0 18px; }
-  .hero p { color: var(--soft); max-width: 31em; margin: 0 0 30px; font-size: 20px; }
-  .btns { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn { display: inline-block; padding: 14px 24px; border-radius: 999px; font-weight: 600; text-decoration: none; border: 2px solid var(--ink); }
-  .btn.solid { background: var(--ink); color: var(--white); }
-  .btn.solid:hover { background: var(--grenadine); border-color: var(--grenadine); }
-  .btn.line:hover { background: var(--ink); color: var(--white); }
-  .portrait { position: relative; }
-  .portrait img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; }
-  .portrait .badge { position: absolute; left: -28px; bottom: 28px; background: var(--grenadine); color: var(--white); padding: 14px 18px; border-radius: 4px; font-weight: 600; line-height: 1.25; transform: rotate(-3deg); }
-  .portrait .badge b { display: block; font-size: 34px; font-weight: 800; }
+  .intro { background: var(--espresso); color: var(--crema); padding: 64px 0; }
+  .intro .wrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: 56px; align-items: center; }
+  .intro p { margin: 0; font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.3; }
+  .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .facts b { display: block; font-family: "Fraunces", serif; font-weight: 900; font-size: 54px; line-height: 1; color: var(--peel); }
+  .facts span { font-size: 15px; color: #D8C3A6; }
 
-  section { padding: 96px 0; }
-  .head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 44px; }
-  .head h2 { font-size: clamp(42px, 5.4vw, 72px); }
-  .head p { color: var(--soft); max-width: 30em; margin: 0; }
+  /* ---------- Drinks rails ---------- */
+  .shift { padding: 100px 0 90px; }
+  .shift .head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 36px; }
+  .shift h2 { font-size: clamp(44px, 6vw, 86px); }
+  .shift h2 small { display: block; font-family: "Courier Prime", monospace; font-style: normal; font-weight: 700; font-size: 16px; letter-spacing: 0; margin-bottom: 14px; }
+  .shift .head p { max-width: 30em; margin: 0; }
+  .coffee { background: var(--crema); }
+  .coffee h2 small { color: var(--roast); }
+  .coffee .head p { color: var(--soft-day); }
+  .bar { background: var(--night); color: var(--ice); }
+  .bar h2 small { color: var(--peel); }
+  .bar .head p { color: var(--soft-night); }
+  .rail { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(250px, 1fr); gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 max(20px, calc((100vw - 1180px) / 2)) 26px; scroll-padding-inline: max(20px, calc((100vw - 1180px) / 2)); scrollbar-width: thin; }
+  .drink { scroll-snap-align: start; margin: 0; }
+  .drink .glass { overflow: hidden; border-radius: 160px 160px 14px 14px; aspect-ratio: 3 / 4; }
+  .coffee .drink .glass { border-radius: 14px 14px 160px 160px; }
+  .drink img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+  .drink:hover img { transform: scale(1.05); }
+  .drink h3 { font-size: 27px; margin: 18px 0 6px; font-style: italic; }
+  .drink .spec { font-family: "Courier Prime", monospace; font-size: 14.5px; line-height: 1.5; }
+  .coffee .spec { color: var(--roast); }
+  .bar .spec { color: var(--soft-night); }
+  .drink.real .glass { outline: 3px solid var(--peel); outline-offset: 6px; }
+  .drink.real h3 { color: var(--peel); }
+  .rail-hint { text-align: right; font-size: 15px; margin-top: 8px; }
+  .coffee .rail-hint { color: var(--soft-day); }
+  .bar .rail-hint { color: var(--soft-night); }
 
-  /* Passport stamps: one per bar, newest first */
-  .stamps { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 26px 22px; list-style: none; padding: 0; margin: 0; }
-  .stamp { --c: var(--stamp-navy); position: relative; border: 3px solid var(--c); color: var(--c); border-radius: 10px; padding: 18px 18px 16px; font-family: "Courier Prime", monospace; background: var(--white); box-shadow: inset 0 0 0 4px var(--white), inset 0 0 0 5px var(--c); }
-  .stamp:nth-child(4n+1) { --c: var(--stamp-navy); transform: rotate(-1.4deg); }
-  .stamp:nth-child(4n+2) { --c: var(--stamp-red); transform: rotate(1.2deg); }
-  .stamp:nth-child(4n+3) { --c: var(--stamp-teal); transform: rotate(-.6deg); }
-  .stamp:nth-child(4n+4) { --c: var(--stamp-olive); transform: rotate(1.6deg); }
-  .stamp .country { font-weight: 700; font-size: 15px; letter-spacing: .08em; }
-  .stamp h3 { font-family: "Bricolage Grotesque", sans-serif; font-size: 25px; line-height: 1.1; color: var(--ink); margin: 8px 0 6px; letter-spacing: -0.01em; }
-  .stamp .meta { font-size: 15px; line-height: 1.45; }
-  .stamp .job { display: inline-block; margin-top: 10px; border: 2px solid var(--c); border-radius: 999px; padding: 0 10px; font-size: 13px; font-weight: 700; }
+  /* ---------- Passport ---------- */
+  #bars { background: #1E2B4A; padding: 100px 0; color: #fff; }
+  #bars .head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+  #bars h2 { font-size: clamp(44px, 6vw, 86px); color: #E9D9A6; }
+  #bars .head p { color: #B9C2DA; max-width: 30em; margin: 0; }
+  .passport { display: grid; grid-template-columns: 1fr 1fr; background: #F5F0E3; border-radius: 14px; padding: 34px 0; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6); position: relative;
+    background-image: repeating-linear-gradient(0deg, transparent 0 27px, rgba(30,43,74,.05) 27px 28px); }
+  .passport::after { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 40px; transform: translateX(-50%); background: linear-gradient(90deg, transparent, rgba(30,43,74,.14) 45%, rgba(30,43,74,.2) 50%, rgba(30,43,74,.14) 55%, transparent); }
+  .page { list-style: none; margin: 0; padding: 0 42px; display: grid; grid-template-columns: 1fr 1fr; gap: 26px 20px; align-content: start; }
+  .stamp { --c: #2D3E8C; color: var(--c); border: 3px solid var(--c); border-radius: 10px; padding: 14px 14px 12px; font-family: "Courier Prime", monospace; background: rgba(255,255,255,.45); box-shadow: inset 0 0 0 4px #F5F0E3, inset 0 0 0 5px var(--c); }
+  .stamp:nth-child(3n+1) { --c: #2D3E8C; transform: rotate(-2deg); }
+  .stamp:nth-child(3n+2) { --c: #B02E45; transform: rotate(1.6deg); border-radius: 50px; text-align: center; }
+  .stamp:nth-child(3n+3) { --c: #1D7373; transform: rotate(-.8deg); border-style: double; border-width: 5px; box-shadow: none; }
+  .stamp .country { font-weight: 700; font-size: 13px; letter-spacing: .06em; }
+  .stamp h3 { font-family: "Hanken Grotesk", sans-serif; font-weight: 700; font-size: 19px; line-height: 1.15; color: #1E2238; margin: 6px 0 4px; letter-spacing: 0; }
+  .stamp .meta { font-size: 13.5px; line-height: 1.4; }
+  .stamp .job { display: inline-block; margin-top: 8px; font-size: 12.5px; font-weight: 700; border-top: 2px solid var(--c); padding-top: 4px; }
 
-  /* Reviews */
-  #reviews { background: var(--ink); color: var(--white); }
-  #reviews .head p { color: #C7C1D1; }
-  .big { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; }
-  .big b { font-size: clamp(90px, 12vw, 170px); line-height: .8; color: var(--grenadine); font-weight: 800; }
-  .big span { font-size: 24px; max-width: 14em; line-height: 1.25; }
-  .quotes { columns: 3 300px; column-gap: 28px; margin-top: 48px; }
-  .quote { break-inside: avoid; margin: 0 0 28px; padding: 22px 22px 18px; background: #2F2440; border-radius: 6px; }
-  .quote blockquote { margin: 0 0 12px; font-size: 21px; line-height: 1.35; font-weight: 600; }
-  .quote blockquote mark { background: none; color: #FF8FA4; }
-  .quote figcaption { color: #C7C1D1; font-size: 15px; }
-  .verify { margin-top: 12px; color: #C7C1D1; font-size: 16px; }
-  .verify a { color: var(--white); }
+  /* ---------- Ticket rail ---------- */
+  #reviews { background: var(--crema-deep); padding: 100px 0 90px; }
+  #reviews .head { display: flex; justify-content: space-between; align-items: end; gap: 30px; flex-wrap: wrap; margin-bottom: 30px; }
+  #reviews h2 { font-size: clamp(44px, 6vw, 86px); }
+  .count { display: flex; align-items: baseline; gap: 14px; }
+  .count b { font-family: "Fraunces", serif; font-weight: 900; font-size: clamp(80px, 10vw, 140px); line-height: .8; color: var(--campari); }
+  .count span { max-width: 13em; color: var(--soft-day); line-height: 1.35; }
+  .ticket-rail { position: relative; padding-top: 18px; }
+  .ticket-rail::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 22px; border-radius: 4px; background: linear-gradient(#D9DDE2, #9AA1AA 60%, #C6CBD2); box-shadow: 0 6px 12px -6px rgba(0,0,0,.4); z-index: 2; }
+  .tickets { display: grid; grid-auto-flow: column; grid-auto-columns: 270px; gap: 18px; overflow-x: auto; padding: 0 4px 30px; scroll-snap-type: x mandatory; align-items: start; }
+  .ticket { scroll-snap-align: start; margin: 0; background: #FFFDF7; padding: 26px 20px 30px; font-family: "Courier Prime", monospace; font-size: 15.5px; line-height: 1.5; color: #2A2A2A; box-shadow: 0 14px 24px -16px rgba(42,24,16,.6);
+    --m: radial-gradient(7px at 50% 100%, transparent 98%, #000) 0 100% / 18px 14px repeat-x, linear-gradient(#000 0 0) 0 0 / 100% calc(100% - 13px) no-repeat;
+    -webkit-mask: var(--m); mask: var(--m); }
+  .ticket:nth-child(odd) { transform: rotate(-1.2deg); }
+  .ticket:nth-child(even) { transform: rotate(1deg); margin-top: 8px; }
+  .ticket .t-head { display: flex; justify-content: space-between; font-size: 12.5px; border-bottom: 1px dashed #999; padding-bottom: 8px; margin-bottom: 12px; color: #666; }
+  .ticket blockquote { margin: 0 0 14px; font-weight: 700; }
+  .ticket blockquote mark { background: #FFE2A8; color: inherit; }
+  .ticket figcaption { font-size: 13.5px; color: #555; border-top: 1px dashed #999; padding-top: 8px; }
+  .verify { color: var(--soft-day); font-size: 16px; margin: 6px 0 0; }
 
-  /* References */
-  .refs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
-  .ref { margin: 0; border-top: 3px solid var(--ink); padding-top: 18px; }
-  .ref blockquote { margin: 0 0 12px; font-size: 22px; line-height: 1.4; }
-  .ref figcaption { color: var(--soft); font-size: 16px; }
-  .ref figcaption b { color: var(--ink); }
+  /* ---------- References ---------- */
+  #references { padding: 100px 0; background: var(--crema); }
+  #references h2 { font-size: clamp(40px, 5vw, 70px); margin-bottom: 14px; }
+  #references .sub { color: var(--soft-day); margin: 0 0 44px; }
+  .refs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 46px 56px; }
+  .ref { margin: 0; position: relative; padding-left: 58px; }
+  .ref::before { content: "“"; position: absolute; left: 0; top: -14px; font-family: "Fraunces", serif; font-weight: 900; font-size: 92px; line-height: 1; color: var(--campari); }
+  .ref blockquote { margin: 0 0 12px; font-family: "Fraunces", serif; font-weight: 600; font-size: 23px; line-height: 1.4; }
+  .ref figcaption { color: var(--soft-day); font-size: 16px; }
+  .ref figcaption b { color: var(--espresso); }
 
-  /* Skills + training */
+  /* ---------- Spec sheet ---------- */
+  #skills { background: var(--espresso); color: var(--crema); padding: 90px 0; }
   .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .skills h3 { font-size: 34px; font-style: italic; margin-bottom: 16px; color: var(--peel); }
   .skills ul { list-style: none; padding: 0; margin: 0; }
-  .skills li { padding: 14px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; }
-  .skills li span:last-child { color: var(--soft); text-align: right; }
-  .skills h3 { font-size: 28px; margin-bottom: 14px; }
+  .skills li { padding: 14px 0; border-bottom: 1px solid rgba(239,226,204,.18); display: flex; justify-content: space-between; gap: 16px; }
+  .skills li span:last-child { color: #CDB89A; text-align: right; font-size: 16px; white-space: nowrap; }
 
-  /* Contact */
-  #contact { padding-bottom: 72px; }
-  .contact { background: var(--grenadine); color: var(--white); border-radius: 6px; padding: clamp(32px, 6vw, 72px); display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
-  .contact h2 { font-size: clamp(40px, 5vw, 68px); }
-  .contact p { margin: 18px 0 0; font-size: 20px; max-width: 26em; }
-  .contact dl { margin: 0; display: grid; gap: 14px; font-size: 20px; }
-  .contact dt { font-size: 15px; opacity: .85; }
-  .contact dd { margin: 0; font-weight: 600; }
-  .contact a { text-underline-offset: 4px; }
-  footer { padding: 28px 0 40px; color: var(--soft); font-size: 15px; }
+  /* ---------- Last call ---------- */
+  #contact { background: var(--night); color: var(--ice); padding: 110px 0 60px; text-align: center; }
+  #contact .clock { font-family: "Courier Prime", monospace; color: var(--peel); font-weight: 700; }
+  #contact h2 { font-size: clamp(64px, 11vw, 160px); font-style: italic; margin: 14px 0 22px; }
+  #contact p { max-width: 34em; margin: 0 auto 44px; color: var(--soft-night); font-size: 20px; }
+  .card { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: rgba(246,241,234,.15); border-radius: 18px; overflow: hidden; text-align: left; }
+  .card div { background: var(--night-2); padding: 24px 22px; }
+  .card dt { font-size: 14px; color: var(--soft-night); margin-bottom: 6px; }
+  .card dd { margin: 0; font-weight: 700; font-size: 18px; overflow-wrap: anywhere; }
+  .card a { text-underline-offset: 4px; }
+  footer { background: var(--night); color: #8E7A84; font-size: 14.5px; padding: 30px 0 40px; border-top: 1px solid rgba(246,241,234,.1); }
   footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
-  @media (max-width: 880px) {
-    nav .links { display: none; }
-    .hero, .skills, .contact, .refs { grid-template-columns: 1fr; gap: 36px; }
-    .hero { padding-top: 12px; }
-    .portrait { order: -1; max-width: 420px; }
-    .portrait .badge { left: 12px; }
-    section { padding: 64px 0; }
+  @media (max-width: 980px) {
+    .hero { grid-template-columns: 1fr; min-height: 0; }
+    .hero h1 { position: static; order: -2; background: var(--crema); color: var(--espresso); text-align: left; font-size: clamp(64px, 17vw, 120px); margin: 0; padding: 30px 20px 0; }
+    .portrait { order: -1; }
+    .hero { background: var(--crema); }
+    .day .topnav { display: none; }
+    .portrait { position: relative; left: auto; transform: none; width: min(76%, 340px); margin: 30px auto 0; justify-self: center; }
+    .half { padding-bottom: 40px; }
+    .day { padding-bottom: 0; }
+    .side-copy, .night .side-copy { margin: 32px 0 0; max-width: none; text-align: left; }
+    .night .side-copy .btn { margin-left: 0; }
+    .night .clock { text-align: left; }
+    .night .topnav { display: none; }
+    .hero .peek { display: none; }
+    .intro .wrap, .skills, .refs { grid-template-columns: 1fr; gap: 40px; }
+    .passport { grid-template-columns: 1fr; padding: 28px 0; }
+    .passport::after { display: none; }
+    .page + .page { margin-top: 26px; }
+    .card { grid-template-columns: 1fr 1fr; }
   }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  @media (max-width: 600px) {
+    .topnav .links { display: none; }
+    .page { grid-template-columns: 1fr 1fr; padding: 0 12px; gap: 16px 10px; }
+    .stamp { padding: 10px 9px 9px; }
+    .stamp:nth-child(3n+2) { border-radius: 26px; padding: 14px 12px 12px; }
+    .stamp .country { font-size: 10.5px; letter-spacing: .02em; }
+    .stamp h3 { font-size: 15px; }
+    .stamp .meta, .stamp .job { font-size: 11.5px; }
+    .rail { grid-auto-columns: 74%; }
+    .tickets { grid-auto-columns: 78%; }
+    .facts b { font-size: 42px; }
+    .card { grid-template-columns: 1fr; }
+    .shift, #bars, #reviews, #references { padding: 70px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .drink img { transition: none; } }
 </style>
 </head>
 <body>
-<header class="wrap">
-  <nav aria-label="Main">
-    <a class="name" href="#top">David Kostić</a>
-    <div class="links"><a href="#bars">Where I've worked</a><a href="#reviews">Guest reviews</a><a href="#references">References</a><a href="#contact">Contact</a></div>
-  </nav>
-</header>
-
 <main id="top">
-  <div class="wrap hero">
-    <div>
-      <h1>David<br>Kostić</h1>
-      <p class="role">Bartender &amp; barista</p>
-      <p>Twelve years behind hotel pool bars, cocktail bars and coffee counters in Serbia, Croatia, Spain and Cyprus. I keep the bar tidy and fast when it's busy, and I remember how you take your drink.</p>
-      <div class="btns">
-        <a class="btn solid" href="#contact">Hire me for the season</a>
-        <a class="btn line" href="#reviews">Read guest reviews</a>
+  <section class="hero" aria-label="David Kostić, bartender and barista">
+    <div class="half day">
+      <div class="topnav"><a class="name" href="#top">David Kostić</a></div>
+      <div class="clock">07:00 · coffee bar open</div>
+      <div class="side-copy">
+        <h2>Barista by day.</h2>
+        <p>Espresso, milk drinks and latte art at the coffee counter, with a tidy station and a fast queue.</p>
+        <a class="btn" href="#coffee">The coffee bar</a>
       </div>
     </div>
-    <div class="portrait">
+    <div class="half night">
+      <nav class="topnav" aria-label="Main"><a href="#bars">Where I've worked</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a></nav>
+      <div class="clock">23:00 · last orders soon</div>
+      <div class="side-copy">
+        <h2>Bartender by night.</h2>
+        <p>Classics, pool-bar rounds and cocktail lists, and I remember how you take your drink.</p>
+        <a class="btn fill" href="#contact">Hire me for the season</a>
+      </div>
+    </div>
+    <h1><span>David</span><span>Kostić</span></h1>
+    <figure class="portrait">
       <img src="img/david.jpg" alt="David smiling behind the bar with a red cocktail, giving a thumbs up" width="506" height="674">
-      <div class="badge"><b>17</b>guest reviews<br>mention David</div>
+      <figcaption>Since 2014 · 4 countries</figcaption>
+    </figure>
+  </section>
+
+  <div class="intro">
+    <div class="wrap">
+      <p>Twelve years behind hotel pool bars, cocktail bars and coffee counters in Serbia, Croatia, Spain and Cyprus. Summers on the coast, winters in the mountains.</p>
+      <div class="facts">
+        <div><b>12</b><span>years behind the bar</span></div>
+        <div><b>11</b><span>bars and hotels</span></div>
+        <div><b>17</b><span>guest reviews name him</span></div>
+      </div>
     </div>
   </div>
+
+  <section class="shift coffee" id="coffee">
+    <div class="wrap head">
+      <h2><small>07:00 – 15:00</small>The coffee bar</h2>
+      <p>The drinks I make every morning shift, from a straight espresso to milk drinks with latte art.</p>
+    </div>
+    <div class="rail" tabindex="0" aria-label="Coffee drinks, scroll sideways">
+      <figure class="drink"><div class="glass"><img src="img/c-espresso-pour.jpg" alt="Espresso pouring from a portafilter" loading="lazy"></div><h3>Espresso</h3><div class="spec">Double shot · short and sweet</div></figure>
+      <figure class="drink"><div class="glass"><img src="img/c-flat-white.jpg" alt="Flat white with a rosetta" loading="lazy"></div><h3>Flat white</h3><div class="spec">Double ristretto · thin, silky milk</div></figure>
+      <figure class="drink"><div class="glass"><img src="img/c-latte-pour.jpg" alt="Milk being poured into a cup to make latte art" loading="lazy"></div><h3>Latte art</h3><div class="spec">Heart · tulip · rosetta</div></figure>
+      <figure class="drink"><div class="glass"><img src="img/c-latte-art-four.jpg" alt="Four cups of coffee with latte art seen from above" loading="lazy"></div><h3>Cappuccino</h3><div class="spec">Espresso · steamed milk · thick foam</div></figure>
+      <figure class="drink"><div class="glass"><img src="img/c-iced-latte.jpg" alt="Iced latte in a tall glass" loading="lazy"></div><h3>Iced latte</h3><div class="spec">Espresso over ice · cold milk</div></figure>
+      <figure class="drink"><div class="glass"><img src="img/c-espresso.jpg" alt="Espresso in a glass cup on a saucer" loading="lazy"></div><h3>Macchiato</h3><div class="spec">Espresso · a spoon of foam</div></figure>
+    </div>
+    <p class="wrap rail-hint">Scroll sideways for more →</p>
+  </section>
+
+  <section class="shift bar" id="cocktails">
+    <div class="wrap head">
+      <h2><small>18:00 – late</small>The cocktail bar</h2>
+      <p>Classics I shake and stir every night, from the hotel pool bar to the cocktail bar after dark.</p>
+    </div>
+    <div class="rail" tabindex="0" aria-label="Cocktails, scroll sideways">
+      <figure class="drink real"><div class="glass"><img src="img/david.jpg" alt="David behind the bar with a red cocktail" loading="lazy"></div><h3>Behind my bar</h3><div class="spec">The real photo: David at work</div></figure>
+      <figure class="drink"><div class="glass"><img src="img/k-espresso-martini.jpg" alt="Espresso martini with coffee beans" loading="lazy"></div><h3>Espresso martini</h3><div class="spec">Vodka · fresh espresso · coffee liqueur · shaken hard</div></figure>
+      <figure class="drink"><div class="glass"><img src="img/k-negroni.jpg" alt="Negroni with an orange slice" loading="lazy"></div><h3>Negroni</h3><div class="spec">Gin · Campari · sweet vermouth · stirred</div></figure>
+      <figure class="drink"><div class="glass"><img src="img/k-old-fashioned.jpg" alt="Old fashioned with an orange peel" loading="lazy"></div><h3>Old fashioned</h3><div class="spec">Bourbon · sugar · bitters · orange peel</div></figure>
+      <figure class="drink"><div class="glass"><img src="img/k-whiskey-sour.jpg" alt="Whiskey sour with foam in a coupe" loading="lazy"></div><h3>Whiskey sour</h3><div class="spec">Whiskey · lemon · sugar · egg white foam</div></figure>
+      <figure class="drink"><div class="glass"><img src="img/k-mojito.jpg" alt="Mojito with mint and lime" loading="lazy"></div><h3>Mojito</h3><div class="spec">Rum · lime · mint · soda · crushed ice</div></figure>
+      <figure class="drink"><div class="glass"><img src="img/k-margarita-sea.jpg" alt="Margarita held up in front of the sea" loading="lazy"></div><h3>Pool bar margarita</h3><div class="spec">Tequila · lime · orange liqueur · salt rim</div></figure>
+      <figure class="drink"><div class="glass"><img src="img/k-spritz.jpg" alt="Orange spritz in a wine glass" loading="lazy"></div><h3>Spritz</h3><div class="spec">Bitter aperitivo · prosecco · soda</div></figure>
+    </div>
+    <p class="wrap rail-hint">Scroll sideways for more →</p>
+  </section>
 
   <section id="bars">
     <div class="wrap">
       <div class="head">
-        <h2>Where I've worked</h2>
+        <h2>Stamps in<br>my passport</h2>
         <p>Eleven bars in four countries since 2014, newest first. Summers on the coast, winters in the mountains, the rest of the year in Belgrade.</p>
       </div>
-      <ol class="stamps">
-        <li class="stamp"><div class="country">CYPRUS · PROTARAS</div><h3>Atlantica Aqua Blue Hotel</h3><div class="meta">May – Nov 2026</div><span class="job">Bartender, pool bar</span></li>
-        <li class="stamp"><div class="country">SERBIA · BELGRADE</div><h3>Kafeterija</h3><div class="meta">Jan 2025 – Apr 2026</div><span class="job">Barista</span></li>
-        <li class="stamp"><div class="country">CROATIA · VELA LUKA</div><h3>Restaurant Dalmacija</h3><div class="meta">Summers 2024 and 2025</div><span class="job">Bartender</span></li>
-        <li class="stamp"><div class="country">SERBIA · BELGRADE</div><h3>Ustanička Restaurant</h3><div class="meta">Nov 2022 – Apr 2024</div><span class="job">Bartender</span></li>
-        <li class="stamp"><div class="country">SERBIA · BELGRADE</div><h3>Cotto Restaurant</h3><div class="meta">Jun – Oct 2022</div><span class="job">Bartender</span></li>
-        <li class="stamp"><div class="country">SERBIA · KOPAONIK</div><h3>Gorski Hotel</h3><div class="meta">Winters 2019 – 2022</div><span class="job">Bartender &amp; barista</span></li>
-        <li class="stamp"><div class="country">SERBIA · BELGRADE</div><h3>Il Giardino Café</h3><div class="meta">2017 – 2019</div><span class="job">Bartender</span></li>
-        <li class="stamp"><div class="country">SPAIN · MALGRAT DE MAR</div><h3>Sorra Daurada Splash Hotel</h3><div class="meta">Summers 2017 and 2018</div><span class="job">Bartender</span></li>
-        <li class="stamp"><div class="country">SERBIA · BELGRADE</div><h3>Coffee Room</h3><div class="meta">Jan – Apr 2017</div><span class="job">Barista</span></li>
-        <li class="stamp"><div class="country">SERBIA · BELGRADE</div><h3>Sunset Restaurant</h3><div class="meta">Apr – Oct 2016</div><span class="job">Bartender</span></li>
-        <li class="stamp"><div class="country">SERBIA · NIŠ</div><h3>Lotos Hotel</h3><div class="meta">2014 – 2015</div><span class="job">Barista, first job</span></li>
-      </ol>
+      <div class="passport">
+        <ol class="page">
+          <li class="stamp"><div class="country">CYPRUS · PROTARAS</div><h3>Atlantica Aqua Blue Hotel</h3><div class="meta">May – Nov 2026</div><span class="job">Bartender, pool bar</span></li>
+          <li class="stamp"><div class="country">SERBIA · BELGRADE</div><h3>Kafeterija</h3><div class="meta">Jan 2025 – Apr 2026</div><span class="job">Barista</span></li>
+          <li class="stamp"><div class="country">CROATIA · VELA LUKA</div><h3>Restaurant Dalmacija</h3><div class="meta">Summers 2024 and 2025</div><span class="job">Bartender</span></li>
+          <li class="stamp"><div class="country">SERBIA · BELGRADE</div><h3>Ustanička Restaurant</h3><div class="meta">Nov 2022 – Apr 2024</div><span class="job">Bartender</span></li>
+          <li class="stamp"><div class="country">SERBIA · BELGRADE</div><h3>Cotto Restaurant</h3><div class="meta">Jun – Oct 2022</div><span class="job">Bartender</span></li>
+          <li class="stamp"><div class="country">SERBIA · KOPAONIK</div><h3>Gorski Hotel</h3><div class="meta">Winters 2019 – 2022</div><span class="job">Bartender &amp; barista</span></li>
+        </ol>
+        <ol class="page" start="7">
+          <li class="stamp"><div class="country">SERBIA · BELGRADE</div><h3>Il Giardino Café</h3><div class="meta">2017 – 2019</div><span class="job">Bartender</span></li>
+          <li class="stamp"><div class="country">SPAIN · MALGRAT DE MAR</div><h3>Sorra Daurada Splash Hotel</h3><div class="meta">Summers 2017 and 2018</div><span class="job">Bartender</span></li>
+          <li class="stamp"><div class="country">SERBIA · BELGRADE</div><h3>Coffee Room</h3><div class="meta">Jan – Apr 2017</div><span class="job">Barista</span></li>
+          <li class="stamp"><div class="country">SERBIA · BELGRADE</div><h3>Sunset Restaurant</h3><div class="meta">Apr – Oct 2016</div><span class="job">Bartender</span></li>
+          <li class="stamp"><div class="country">SERBIA · NIŠ</div><h3>Lotos Hotel</h3><div class="meta">2014 – 2015</div><span class="job">Barista, first job</span></li>
+        </ol>
+      </div>
     </div>
   </section>
 
   <section id="reviews">
     <div class="wrap">
-      <div class="big"><b>17</b><span>guests wrote about David by name on Tripadvisor and Google in the 2026 season alone.</span></div>
-      <div class="quotes">
-        <figure class="quote"><blockquote>“It is people like <mark>David</mark> who make guests feel truly welcome.”</blockquote><figcaption>Airida L., Tripadvisor, September 2026</figcaption></figure>
-        <figure class="quote"><blockquote>“<mark>David</mark> from Serbia is the best barman, cheers!”</blockquote><figcaption>Nikola G., Tripadvisor, September 2026</figcaption></figure>
-        <figure class="quote"><blockquote>“Even made an effort learning our language so the girls can order by themselves!”</blockquote><figcaption>Guest from Israel, Tripadvisor, September 2026</figcaption></figure>
-        <figure class="quote"><blockquote>“The bartender <mark>David</mark>, who is definitely in the right place with his skills and sense of humor.”</blockquote><figcaption>Inese, Latvia, Tripadvisor, August 2026</figcaption></figure>
-        <figure class="quote"><blockquote>“He was very nice, helpful, smiling, and always tried to help. He definitely added to our experience.”</blockquote><figcaption>Avner S., Google (translated), 2026</figcaption></figure>
-        <figure class="quote"><blockquote>“He was friendly, welcoming and one of the few staff members who made us feel valued.”</blockquote><figcaption>Laura W., Google, 2026</figcaption></figure>
-        <figure class="quote"><blockquote>“Always smiling, always attentive and absolutely amazing!!”</blockquote><figcaption>Guest family, Tripadvisor, August 2026</figcaption></figure>
+      <div class="head">
+        <h2>Order tickets<br>from guests</h2>
+        <div class="count"><b>17</b><span>guests wrote about David by name on Tripadvisor and Google in the 2026 season alone.</span></div>
+      </div>
+      <div class="ticket-rail">
+        <div class="tickets" tabindex="0" aria-label="Guest reviews, scroll sideways">
+          <figure class="ticket"><div class="t-head"><span>TRIPADVISOR</span><span>SEP 2026</span></div><blockquote>“It is people like <mark>David</mark> who make guests feel truly welcome.”</blockquote><figcaption>Airida L., Tripadvisor</figcaption></figure>
+          <figure class="ticket"><div class="t-head"><span>TRIPADVISOR</span><span>SEP 2026</span></div><blockquote>“<mark>David</mark> from Serbia is the best barman, cheers!”</blockquote><figcaption>Nikola G., Tripadvisor</figcaption></figure>
+          <figure class="ticket"><div class="t-head"><span>TRIPADVISOR</span><span>SEP 2026</span></div><blockquote>“Even made an effort learning our language so the girls can order by themselves!”</blockquote><figcaption>Guest from Israel, Tripadvisor</figcaption></figure>
+          <figure class="ticket"><div class="t-head"><span>TRIPADVISOR</span><span>AUG 2026</span></div><blockquote>“The bartender <mark>David</mark>, who is definitely in the right place with his skills and sense of humor.”</blockquote><figcaption>Inese, Latvia, Tripadvisor</figcaption></figure>
+          <figure class="ticket"><div class="t-head"><span>GOOGLE</span><span>2026</span></div><blockquote>“He was very nice, helpful, smiling, and always tried to help. He definitely added to our experience.”</blockquote><figcaption>Avner S., Google (translated)</figcaption></figure>
+          <figure class="ticket"><div class="t-head"><span>GOOGLE</span><span>2026</span></div><blockquote>“He was friendly, welcoming and one of the few staff members who made us feel valued.”</blockquote><figcaption>Laura W., Google</figcaption></figure>
+          <figure class="ticket"><div class="t-head"><span>TRIPADVISOR</span><span>AUG 2026</span></div><blockquote>“Always smiling, always attentive and absolutely amazing!!”</blockquote><figcaption>Guest family, Tripadvisor</figcaption></figure>
+        </div>
       </div>
       <p class="verify">All quotes are from public reviews of the Atlantica Aqua Blue Hotel, Protaras. <a href="https://www.tripadvisor.com/Search?q=Atlantica%20Aqua%20Blue%20Protaras" target="_blank" rel="noopener">Find them on Tripadvisor</a> and search the reviews for “David”.</p>
     </div>
@@ -176,17 +321,18 @@
 
   <section id="references">
     <div class="wrap">
-      <div class="head"><h2>What managers say</h2><p>From reference letters. Full letters available on request.</p></div>
+      <h2>What managers say</h2>
+      <p class="sub">From reference letters. Full letters available on request.</p>
       <div class="refs">
-        <figure class="ref"><blockquote>“Guests often praised his warm and welcoming manner, and his ability to create a pleasant atmosphere at the bar. He worked well under pressure.”</blockquote><figcaption><b>Owner, Restaurant Dalmacija</b>, Vela Luka, Croatia</figcaption></figure>
-        <figure class="ref"><blockquote>“Consistently demonstrated professionalism, reliability, and a strong willingness to learn. He proved to be a valuable member of our team.”</blockquote><figcaption><b>F&amp;B Manager, Atlantica Aqua Blue Hotel</b>, Protaras, Cyprus</figcaption></figure>
-        <figure class="ref"><blockquote>“Very much a team player. David was always punctual, yet easygoing. Almost without exception, he put the customer first.”</blockquote><figcaption><b>Sorra Daurada Splash Hotel</b>, Malgrat de Mar, Spain</figcaption></figure>
-        <figure class="ref"><blockquote>“He was highly respected by his colleagues and people he was supervising. We appreciated his pleasant character in front of the guests.”</blockquote><figcaption><b>F&amp;B Manager, Gorski Hotel</b>, Kopaonik, Serbia</figcaption></figure>
+        <figure class="ref"><blockquote>Guests often praised his warm and welcoming manner, and his ability to create a pleasant atmosphere at the bar. He worked well under pressure.</blockquote><figcaption><b>Owner, Restaurant Dalmacija</b>, Vela Luka, Croatia</figcaption></figure>
+        <figure class="ref"><blockquote>Consistently demonstrated professionalism, reliability, and a strong willingness to learn. He proved to be a valuable member of our team.</blockquote><figcaption><b>F&amp;B Manager, Atlantica Aqua Blue Hotel</b>, Protaras, Cyprus</figcaption></figure>
+        <figure class="ref"><blockquote>Very much a team player. David was always punctual, yet easygoing. Almost without exception, he put the customer first.</blockquote><figcaption><b>Sorra Daurada Splash Hotel</b>, Malgrat de Mar, Spain</figcaption></figure>
+        <figure class="ref"><blockquote>He was highly respected by his colleagues and people he was supervising. We appreciated his pleasant character in front of the guests.</blockquote><figcaption><b>F&amp;B Manager, Gorski Hotel</b>, Kopaonik, Serbia</figcaption></figure>
       </div>
     </div>
   </section>
 
-  <section id="skills" style="padding-top:0">
+  <section id="skills">
     <div class="wrap skills">
       <div>
         <h3>Behind the bar</h3>
@@ -212,25 +358,22 @@
 
   <section id="contact">
     <div class="wrap">
-      <div class="contact">
-        <div>
-          <h2>Hiring for the season?</h2>
-          <p>I'm open to summer and winter seasons in hotels and resorts, and to year-round work in cocktail or coffee bars. Send me a message and I'll reply the same day.</p>
-        </div>
-        <!-- Confirm with David before publishing his phone and email. -->
-        <dl>
-          <div><dt>Email</dt><dd><a href="mailto:davidzkostic@gmail.com">davidzkostic@gmail.com</a></dd></div>
-          <div><dt>Phone and WhatsApp</dt><dd><a href="tel:+38162312090">+381 62 312 090</a></dd></div>
-          <div><dt>Based in</dt><dd>Prokuplje, Serbia. Ready to travel.</dd></div>
-          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/david-kostic" target="_blank" rel="noopener">linkedin.com/in/david-kostic</a></dd></div>
-        </dl>
-      </div>
+      <div class="clock">01:00 · last call</div>
+      <h2>Hiring for<br>the season?</h2>
+      <p>I'm open to summer and winter seasons in hotels and resorts, and to year-round work in cocktail or coffee bars. Send me a message and I'll reply the same day.</p>
+      <!-- Confirm with David before publishing his phone and email. -->
+      <dl class="card">
+        <div><dt>Email</dt><dd><a href="mailto:davidzkostic@gmail.com">davidzkostic@gmail.com</a></dd></div>
+        <div><dt>Phone and WhatsApp</dt><dd><a href="tel:+38162312090">+381 62 312 090</a></dd></div>
+        <div><dt>Based in</dt><dd>Prokuplje, Serbia. Ready to travel.</dd></div>
+        <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/david-kostic" target="_blank" rel="noopener">david-kostic</a></dd></div>
+      </dl>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="wrap"><span>David Kostić, bartender &amp; barista</span><span>Website by Darko Kostic</span></div>
+  <div class="wrap"><span>David Kostić, bartender &amp; barista · Drink photos: Unsplash</span><span>Website by Darko Kostic</span></div>
 </footer>
 </body>
 </html>
