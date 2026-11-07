@@ -27,7 +27,7 @@
   .btn.fill:hover { background: #A50D26; border-color: #A50D26; }
 
   /* ---------- Hero: day shift | night shift ---------- */
-  .hero { position: relative; display: grid; grid-template-columns: 1fr 1fr; min-height: min(100vh, 920px); overflow: hidden; }
+  .hero { position: relative; display: grid; grid-template-columns: 1fr 1fr; min-height: max(720px, min(100vh, 920px)); overflow: hidden; }
   .half { position: relative; padding: 28px clamp(20px, 4vw, 56px) 56px; display: flex; flex-direction: column; }
   .day { background: var(--crema); color: var(--espresso); }
   .night { background: var(--night); color: var(--ice); }
@@ -39,11 +39,12 @@
   .night .topnav { justify-content: flex-end; }
   .night .topnav a { text-decoration: none; font-weight: 600; margin-left: 24px; opacity: .85; }
   .night .topnav a:hover { opacity: 1; }
-  .hero h1 { position: absolute; z-index: 3; left: 0; right: 0; top: clamp(90px, 13vh, 140px); text-align: center; font-size: clamp(64px, 12.5vw, 190px); line-height: .82; font-style: italic;
+  .hero .center { position: absolute; inset: clamp(80px, 11vh, 120px) 0 0; z-index: 2; display: flex; flex-direction: column; align-items: center; pointer-events: none; }
+  .hero h1 { align-self: stretch; text-align: center; padding-bottom: .1em; font-size: clamp(64px, 12.5vw, 190px); line-height: .82; font-style: italic;
     background: linear-gradient(90deg, var(--espresso) 50%, var(--ice) 50%); -webkit-background-clip: text; background-clip: text; color: transparent; pointer-events: none; }
   .hero h1 span { display: block; }
-  .portrait { position: absolute; z-index: 2; left: 50%; bottom: 0; transform: translateX(-50%); width: min(24vw, 340px); margin: 0; }
-  .portrait img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 999px 999px 0 0; }
+  .portrait { position: relative; flex: 1 1 0; min-height: 0; margin: 24px 0 0; display: flex; align-items: flex-end; pointer-events: auto; }
+  .portrait img { height: 100%; width: auto; max-width: min(26vw, 360px); aspect-ratio: 3 / 4; object-fit: cover; object-position: center 30%; border-radius: 999px 999px 0 0; }
   .portrait figcaption { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%) rotate(-3deg); background: var(--peel); color: var(--night); font-weight: 700; padding: 8px 16px; border-radius: 6px; white-space: nowrap; font-size: 15px; }
   .side-copy { margin-top: auto; max-width: 300px; }
   .side-copy h2 { font-size: clamp(28px, 2.6vw, 38px); margin-bottom: 12px; }
@@ -168,7 +169,10 @@
     .portrait { order: -1; }
     .hero { background: var(--crema); }
     .day .topnav { display: none; }
-    .portrait { position: relative; left: auto; transform: none; width: min(76%, 340px); margin: 30px auto 0; justify-self: center; }
+    .hero .center { display: contents; }
+    .hero h1 { align-self: auto; }
+    .portrait { position: relative; display: block; flex: none; width: min(76%, 340px); margin: 30px auto 0; justify-self: center; }
+    .portrait img { width: 100%; height: auto; max-width: none; }
     .half { padding-bottom: 40px; }
     .day { padding-bottom: 0; }
     .side-copy, .night .side-copy { margin: 32px 0 0; max-width: none; text-align: left; }
@@ -220,11 +224,13 @@
         <a class="btn fill" href="#contact">Hire me for the season</a>
       </div>
     </div>
+    <div class="center">
     <h1><span>David</span><span>Kostić</span></h1>
     <figure class="portrait">
       <img src="img/david.jpg" alt="David smiling behind the bar with a red cocktail, giving a thumbs up" width="506" height="674">
       <figcaption>Since 2014 · 4 countries</figcaption>
     </figure>
+    </div>
   </section>
 
   <div class="intro">
